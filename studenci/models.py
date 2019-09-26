@@ -15,5 +15,5 @@ class Student(models.Model):
     nazwisko = models.CharField(max_length=30)
     uczelnia = models.ForeignKey(Uczelnia, on_delete=models.SET_NULL, null=True)
     miasto = models.ForeignKey(Miasto, on_delete=models.SET_NULL, null=True)
-    roks = models.CharField(max_length=3, blank=True, default=0)
+    roks = models.CharField(max_length=3, blank=True, default='')
     dochod = models.DecimalField(max_digits=6, decimal_places=2, default=0)
