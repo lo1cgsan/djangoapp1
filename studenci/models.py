@@ -12,7 +12,7 @@ class Uczelnia(models.Model):
 
 class Miasto(models.Model):
     nazwa = models.CharField(verbose_name='miasto', max_length=30)
-    kod = models.CharField(max_length=30, help_text="Wpisz kod pocztowy")
+    kod = models.CharField(max_length=6, help_text="Wpisz kod pocztowy")
 
     def __str__(self):
         return self.nazwa
