@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Miasta</title>
+</head>
+<body>
+    <h1>Miasta</h1>
+
+<h2>Dodaj miasto</h2>
+    <form action="." method="POST">
+    {% csrf_token %}
+        <input type="text" name="miasto" size="30">
+        <br>
+        <input type="submit" value="Zapisz">
+    </form>
+
+<h2>Lista miast</h2>
+<ol>
+    {% for miasto in miasta %}
+        <li>{{ miasto.nazwa }}&nbsp;{{ miasto.kod }}</li>
+    {% endfor %}
+</ol>
+
+</body>
+</html>
