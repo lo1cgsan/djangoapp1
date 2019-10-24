@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <title>Uczelnie</title>
-</head>
-<body>
-    <h1>Uczelnie</h1>
+{% extends 'szablon.html' %}
+{% block naglowek %}Uczelnie{% endblock naglowek %}
+{% block tresc %}
 
 <h2>Dodaj uczelnię</h2>
     <form action="." method="POST">
@@ -21,5 +16,4 @@
     {% endfor %}
 </ol>
 
-</body>
-</html>
+{% endblock tresc %}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block tytul %}Projekt Django{% endblock tytul %}</title>
+</head>
+<body>
+    <h1>{% block naglowek %}Projekt Django{% endblock naglowek %}</h1>
+
+{% block komunikaty %}
+{% if messages %}
+    <ul>
+    {% for komunikat in messages %}
+        <li>{{ komunikat }}</li>
+    {% endfor %}
+    </ul>
+{% endif %}
+{% endblock komunikaty %}
+
+{% block tresc %}
+{% endblock tresc %}
+
+</body>
+</html>
