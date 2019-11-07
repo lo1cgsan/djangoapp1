@@ -46,6 +46,7 @@ def uczelnie(request):
             u = Uczelnia(nazwa=form.cleaned_data['nazwa'])
             u.save()
             messages.success(request, "Poprawnie dodano dane!")
+            return redirect(reverse('studenci:uczelnie'))
         else:
             messages.error(request, "Niepoprawne dane!")
     else:
