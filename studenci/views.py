@@ -27,14 +27,16 @@ def miasta(request):
     return render(request, 'studenci/miasta.html', kontekst)
 
 
+# nazwa = request.POST.get('nazwa', '')
+# if len(nazwa.strip()):
+
 def uczelnie(request):
     """Widok wyświetlający miasta i formularz ich dodawania"""
     if request.method == 'POST':
-        nazwa = request.POST.get('nazwa', '')
-        # if len(nazwa.strip()):
         form = UczelniaForm(request.POST)  # do wyjaśnienie
         if form.is_valid():
-            u = Uczelnia(nazwa=nazwa)
+            print(form.cleaned_data)
+            u = Uczelnia(nazwa=form.cleaned_data['nazwa'])
             u.save()
             messages.success(request, "Poprawnie dodano dane!")
         else:

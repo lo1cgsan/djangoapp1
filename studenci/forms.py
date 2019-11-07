@@ -14,3 +14,5 @@ class UczelniaForm(forms.Form):
         max_length=30,
         widget=forms.TextInput()
     )
+
+    # github.com/lo1cgsan/djangoapp1
