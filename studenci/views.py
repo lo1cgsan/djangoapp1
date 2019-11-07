@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib import messages
+from django.urls import reverse
 
 from studenci.models import Miasto, Uczelnia
-from studenci.forms import UserLoginForm, UczelniaForm
+from studenci.forms import UserLoginForm, UczelniaForm, MiastoForm
 
 def index(request):
     return HttpResponse("<h1>Witaj wsród sudentów!</h1>")
@@ -13,17 +14,23 @@ def index(request):
 def miasta(request):
     """Widok wyświetlający miasta i formularz ich dodawania"""
     if request.method == 'POST':
-        nazwa = request.POST.get('nazwa', '')
-        kod = request.POST.get('kod', '')
-        if len(nazwa.strip()) and len(kod.strip()):
-            m = Miasto(nazwa=nazwa, kod=kod)
+        # nazwa = request.POST.get('nazwa', '')
+        # kod = request.POST.get('kod', '')
+        form = MiastoForm(request.POST)
+        # if len(nazwa.strip()) and len(kod.strip()):
+        if form.is_valid():
+            #m = Miasto(nazwa=nazwa, kod=kod)
+            m = Miasto(nazwa=form.cleaned_data['nazwa'], kod=form.cleaned_data['kod'])
             m.save()
             messages.success(request, "Poprawnie dodano dane!")
+            return redirect(reverse('studenci:miasta'))
         else:
             messages.error(request, "Niepoprawne dane!")
+    else:
+        form = MiastoForm()
 
     miasta = Miasto.objects.all()
-    kontekst = {'miasta': miasta}
+    kontekst = {'miasta': miasta, 'form': form}
     return render(request, 'studenci/miasta.html', kontekst)
 
 
