@@ -7,8 +7,8 @@ from studenci.models import Miasto, Uczelnia
 from studenci.forms import UserLoginForm, UczelniaForm, MiastoForm
 
 def index(request):
-    return HttpResponse("<h1>Witaj wsród sudentów!</h1>")
-    # return render(request,'pizza/index.html')
+    # return HttpResponse("<h1>Witaj wsród sudentów!</h1>")
+    return render(request,'studenci/index.html')
 
 
 def miasta(request):
