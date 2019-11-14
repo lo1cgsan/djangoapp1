@@ -22,7 +22,12 @@
                     </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a href="{% url 'studenci:index' %}" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button">Studenci</a>
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button">Studenci</a>
+                    <div class="dropdown-menu">
+                        <a href="{% url 'studenci:index' %}" class="dropdown-item">Strona główna</a>
+                        <a href="{% url 'studenci:miasta' %}" class="dropdown-item">Miasta</a>
+                        <a href="{% url 'studenci:uczelnie' %}" class="dropdown-item">Uczelnie</a>
+                    </div>
                 </li>
             </ul>
         </div>
