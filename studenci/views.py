@@ -54,7 +54,12 @@ def uczelnie(request):
 
     uczelnie = Uczelnia.objects.all()
     kontekst = {'uczelnie': uczelnie, 'form': form}
-    return render(request, 'studenci/uczelnie.html', kontekst)
+
+    if request.user.has_perm('studenci.add_uczelnia'):
+        return render(request, 'studenci/uczelnie.html', kontekst)
+    else:
+        messages.info(request, "Nie możesz dodawać uczelni!")
+        return redirect(reverse('studenci:index'))
 
 
 def loguj_studenta(request):

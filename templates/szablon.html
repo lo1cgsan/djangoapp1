@@ -29,6 +29,18 @@
                         <a href="{% url 'studenci:uczelnie' %}" class="dropdown-item">Uczelnie</a>
                     </div>
                 </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button">Użytkownik</a>
+                    <div class="dropdown-menu">
+                        <a href="{% url 'users:index' %}" class="dropdown-item">Strona główna</a>
+                        {% if not user.is_authenticated %}
+                            <a href="{% url 'users:rejestruj' %}" class="dropdown-item">Załóż konto</a>
+                            <a href="{% url 'users:loguj' %}" class="dropdown-item">Zaloguj</a>
+                        {% else %}
+                            <a href="{% url 'users:wyloguj' %}" class="dropdown-item">Wyloguj</a>
+                        {% endif %}
+                    </div>
+                </li>
             </ul>
         </div>
     </nav>

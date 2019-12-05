@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from users.forms import UserLoginForm
 
 def index(request):
-    pass
+    return render(request, 'users/index.html')
 
 def rejestruj(request):
     if request.method == 'POST':
@@ -27,11 +27,23 @@ def loguj_user(request):
     if request.method == 'POST':
         form = UserLoginForm(request.POST)
         if form.is_valid():
-            login = form.cleaned_data['login']
+            nazwa = form.cleaned_data['login']
             haslo = form.cleaned_data['haslo']
-            pass
+            user = authenticate(request, username=nazwa, password=haslo)
+            if user is not None:
+                login(request, user)
+                messages.success(request, "Zostałeś zalogowany!")
+                return redirect(reverse('users:index'))
+            else:
+                messages.error(request, "Błędny login lub hasło!")
     else:
         form = UserLoginForm()
 
     kontekst = {'form': form}
     return render(request, 'users/loguj_user.html', kontekst)
+
+
+def wyloguj_user(request):
+    logout(request)
+    messages.info(request, "Zostałeś wylogowany!")
+    return redirect(reverse('users:index'))
