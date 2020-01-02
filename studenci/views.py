@@ -6,6 +6,8 @@ from django.urls import reverse
 from studenci.models import Miasto, Uczelnia
 from studenci.forms import UserLoginForm, UczelniaForm, MiastoForm
 
+from django.views.generic import ListView
+
 def index(request):
     # return HttpResponse("<h1>Witaj wsród sudentów!</h1>")
     return render(request,'studenci/index.html')
@@ -60,6 +62,12 @@ def uczelnie(request):
     else:
         messages.info(request, "Nie możesz dodawać uczelni!")
         return redirect(reverse('studenci:index'))
+
+
+class ListaUczelni(ListView):
+    model = Uczelnia
+    context_object_name = 'uczelnie'
+    template_name = 'studenci/lista_uczelni.html'
 
 
 def loguj_studenta(request):

@@ -26,8 +26,10 @@
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button">Studenci</a>
                     <div class="dropdown-menu">
                         <a href="{% url 'studenci:index' %}" class="dropdown-item">Strona główna</a>
-                        <a href="{% url 'studenci:miasta' %}" class="dropdown-item">Miasta</a>
-                        <a href="{% url 'studenci:uczelnie' %}" class="dropdown-item">Uczelnie</a>
+                        <a href="{% url 'studenci:miasta_lista' %}" class="dropdown-item">Lista miast</a>
+                        <a href="{% url 'studenci:miasta_dodaj' %}" class="dropdown-item">Dodaj miasto</a>
+                        <a href="{% url 'studenci:uczelnie_lista' %}" class="dropdown-item">Lista uczelni</a>
+                        <a href="{% url 'studenci:uczelnie_dodaj' %}" class="dropdown-item">Dodaj uczelnię</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">

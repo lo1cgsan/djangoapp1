@@ -12,9 +12,10 @@ def index(request):
 
 def dodajPizza(request):
     if request.method == 'POST':
-        form = PizzaForm(request.POST)
-        if form.is_valid():
-            print(form.cleaned_data)
+        pass
+        # form = PizzaForm(request.POST)
+        # if form.is_valid():
+        #     print(form.cleaned_data)
     else:
         form = PizzaForm()
     return render(request,'pizza/pizzaform.html', {'form': form})

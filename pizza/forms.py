@@ -8,11 +8,10 @@ class PizzaForm(ModelForm):
         model = Pizza
         exclude = ('data',)
         widgets = {
-            'opis': Textarea(attrs={'cols': 80, 'rows': 3}),
+            'opis': Textarea(attrs={'cols': 40, 'rows': 2}),
         }
-
 
 class SkladnikForm(ModelForm):
     class Meta:
         model = Skladnik
-        fields = ('nazwa', 'jarski')
+        fields = ('nazwa', 'jarski', 'pizze')
