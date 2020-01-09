@@ -1,12 +1,15 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib import messages
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 
 from studenci.models import Miasto, Uczelnia
 from studenci.forms import UserLoginForm, UczelniaForm, MiastoForm
 
 from django.views.generic import ListView
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+from django.views.generic.edit import CreateView
 
 def index(request):
     # return HttpResponse("<h1>Witaj wsród sudentów!</h1>")
@@ -69,6 +72,29 @@ class ListaUczelni(ListView):
     context_object_name = 'uczelnie'
     template_name = 'studenci/lista_uczelni.html'
 
+
+@method_decorator(login_required, name='dispatch')
+class DodajMiasto(CreateView):
+    model = Miasto
+    fields = ('nazwa', 'kod')
+    template_name = 'studenci/dodaj_miasto.html'
+    success_url = reverse_lazy('studenci:miasta_lista')
+
+@method_decorator(login_required, name='dispatch')
+class DodajUczelnie(CreateView):
+    model = Uczelnia
+    fields = ('nazwa',)
+    template_name = 'studenci/uczelnie.html'
+    success_url = reverse_lazy('studenci:uczelnie_lista')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['uczelnie'] = Uczelnia.objects.all()
+        return context
+
+    def form_valid(self, form):
+        messages.success(self.request, "Dodano miasto!")
+        return super().form_valid(form)
 
 def loguj_studenta(request):
     if request.method == 'POST':

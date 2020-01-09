@@ -3,7 +3,7 @@
 {% block tresc %}
 
 <h2>Dodaj uczelnię</h2>
-    <form action="." method="POST">
+    <form method="POST">
     {% csrf_token %}
         {{ form.as_p }}
 <!--        <input type="text" name="nazwa" size="30" maxlength="30"> -->
