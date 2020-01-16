@@ -1,5 +1,15 @@
 from django import forms
 
+from django.forms import ModelForm
+from studenci.models import Uczelnia
+
+
+class UczelniaModelForm(ModelForm):
+    class Meta:
+        model = Uczelnia
+        fields = ('nazwa',)
+
+
 class UserLoginForm(forms.Form):
     login = forms.CharField(
         label="Twój login",
@@ -26,5 +36,3 @@ class MiastoForm(forms.Form):
         max_length=6,
         widget=forms.TextInput()
     )
-
-# github.com/lo1cgsan/djangoapp1

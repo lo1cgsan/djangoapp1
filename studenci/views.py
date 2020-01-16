@@ -4,12 +4,13 @@ from django.contrib import messages
 from django.urls import reverse, reverse_lazy
 
 from studenci.models import Miasto, Uczelnia
-from studenci.forms import UserLoginForm, UczelniaForm, MiastoForm
+from studenci.forms import UczelniaModelForm, UczelniaForm, MiastoForm
 
 from django.views.generic import ListView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
+
 
 def index(request):
     # return HttpResponse("<h1>Witaj wsród sudentów!</h1>")
@@ -103,3 +104,19 @@ def loguj_studenta(request):
         form = UserLoginForm()
     kontekst = {'form': form}
     return render(request, 'studenci/login.html', kontekst)
+
+
+from django.contrib.messages.views import SuccessMessageMixin
+
+@method_decorator(login_required, name='dispatch')
+class EdytujUczelnie(SuccessMessageMixin, UpdateView):
+    model = Uczelnia
+    form_class = UczelniaModelForm
+    template_name = 'studenci/uczelnie.html'
+    success_url = reverse_lazy('studenci:uczelnie_lista')
+    success_message = 'Uczelnię zaktualizowano!'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['uczelnie'] = Uczelnia.objects.all()
+        return context

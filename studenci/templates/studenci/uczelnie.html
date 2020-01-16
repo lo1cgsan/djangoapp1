@@ -13,7 +13,7 @@
 <h2>Lista uczelni</h2>
 <ol>
     {% for uczelnia in uczelnie %}
-        <li>{{ uczelnia.nazwa }}</li>
+        <li>{{ uczelnia.nazwa }} – <a href="{% url 'studenci:uczelnie_edytuj' uczelnia.id %}">Edytuj</a></li>
     {% endfor %}
 </ol>
 
