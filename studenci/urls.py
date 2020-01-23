@@ -17,6 +17,7 @@ urlpatterns = [
 	path('uczelnie/lista', views.ListaUczelni.as_view(), name='uczelnie_lista'),
 	path('uczelnie/create', views.DodajUczelnie.as_view(), name='uczelnie_create'),
 	path('uczelnie/edytuj/<int:pk>', views.EdytujUczelnie.as_view(), name='uczelnie_edytuj'),
+	path('uczelnie/usun/<int:pk>', views.UsunUczelnie.as_view(), name='uczelnie_usun'),
 	path('miasta/create', views.DodajMiasto.as_view(), name='miasta_create'),
 	path('login/', views.loguj_studenta, name='login'),
 ]

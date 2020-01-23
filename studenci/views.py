@@ -10,6 +10,7 @@ from django.views.generic import ListView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic import DeleteView
 
 
 def index(request):
@@ -120,3 +121,8 @@ class EdytujUczelnie(SuccessMessageMixin, UpdateView):
         context = super().get_context_data(**kwargs)
         context['uczelnie'] = Uczelnia.objects.all()
         return context
+
+
+class UsunUczelnie(DeleteView):
+    model = Uczelnia
+    success_url = reverse_lazy('studenci:uczelnie_lista')
