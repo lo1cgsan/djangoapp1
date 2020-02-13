@@ -1,0 +1,14 @@
+{% extends 'szablon.html' %}
+
+{% block tresc %}
+    <h2>Lista pytań</h2>
+    <ul>
+    {% for p in pytania %}
+        <li class="mb-1">
+            <span class="lead">{{ p }}</span>
+            <br>
+            <span class="float-right">(kategoria: {{ p.kategoria.nazwa }})</span>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}
