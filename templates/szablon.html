@@ -35,6 +35,12 @@
                     </div>
                 </li>
                 <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button">Ankiety</a>
+                    <div class="dropdown-menu">
+                        <a href="{% url 'ankiety:lista-pytan' %}" class="dropdown-item">Lista pytań</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button">Użytkownik</a>
                     <div class="dropdown-menu">
                         <a href="{% url 'users:index' %}" class="dropdown-item">Strona główna</a>

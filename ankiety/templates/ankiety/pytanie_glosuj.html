@@ -1,0 +1,39 @@
+{% extends 'szablon.html' %}
+
+{% block tresc %}
+    <h2>Oddaj głos</h2>
+    <div class="mx-3">
+        <h3>{{ pytanie }}</h3>
+
+        {% if komunikat_bledu %}
+            <div class="text-warning bg-secondary rounded p-3">
+                Błąd: {{ komunikat_bledu }}
+            </div>
+        {% endif %}
+
+        <form action="{% url 'ankiety:pytanie-glosuj' pytanie.id %}" method="post">
+            {% csrf_token %}
+            <ul class="list-unstyled">
+                {% for o in pytanie.odpowiedz_set.all %}
+                <li class="mb-1">
+                    <input type="radio" name="odpowiedz" id="o{{ forloop.counter }}" value="{{ o.id }}">
+                    <label for="o{{ forloop.counter }}">{{ o.tekst_odpowiedzi }}</label>
+                </li>
+                {% endfor %}
+            </ul>
+            <button type="submit" class="btn btn-secondary">Głosuj</button>
+        </form>
+
+    </div>
+
+
+    <ul>
+    {% for p in pytania %}
+        <li class="mb-1">
+            <span class="lead">{{ p }}</span>
+            <br>
+            <span class="float-right">(kategoria: {{ p.kategoria.nazwa }})</span>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}

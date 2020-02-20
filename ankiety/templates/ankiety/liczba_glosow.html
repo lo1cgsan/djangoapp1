@@ -1,0 +1,14 @@
+{% extends 'szablon.html' %}
+
+{% block tresc %}
+    <h2>Głosy</h2>
+    <h3>{{ pytanie }}</h3>
+    <ol>
+    {% for o in pytanie.odpowiedz_set.all %}
+        <li class="mb-1">
+            <span class="lead">{{ o }}, głosów:</span>
+            <span class="badge badge-secondary">{{ o.glosy }}&nbsp;</span>
+        </li>
+    {% endfor %}
+    </ol>
+{% endblock %}
